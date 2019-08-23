@@ -7,7 +7,7 @@ function populateForm() {
   let updtwLtstInput = document.getElementById('updtwLtst');
   let rptrInput = document.getElementById('rptr');
   let cmntInput = document.getElementById('cmnt');
-  let cmntAndreaInput = document.getElementById('cmntAndrea');
+  let cmntAndreaInput = document.getElementById('andr');
 
   prKyInput.value = JSON.parse(localStorage.getItem("clickedRowData"))[0];
   vndNmInput.value = JSON.parse(localStorage.getItem("clickedRowData"))[1];
@@ -17,6 +17,6 @@ function populateForm() {
   updtwLtstInput.value = JSON.parse(localStorage.getItem("clickedRowData"))[5];
   rptrInput.value = JSON.parse(localStorage.getItem("clickedRowData"))[6];
   cmntInput.value = JSON.parse(localStorage.getItem("clickedRowData"))[7];
-  cmntAndreaInput.value = JSON.parse(localStorage.getItem("clickedRowData"))[7];
+  cmntAndreaInput.value = JSON.parse(localStorage.getItem("clickedRowData"))[8];
 }
 populateForm();
