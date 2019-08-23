@@ -2,12 +2,14 @@ var express = require('express');
 var router = express.Router();
 
 var mysql = require('mysql')
-var connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'catRelTrkr'
-});
+// var connection = mysql.createConnection({//old - from local db setup
+// 	host: 'localhost',
+// 	user: 'root',
+// 	password: '',
+// 	database: 'catRelTrkr'
+// });
+
+const connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
 connection.connect();
 
 /* GET db-input page. */

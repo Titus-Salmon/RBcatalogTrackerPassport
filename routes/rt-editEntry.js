@@ -2,14 +2,15 @@ var express = require('express');
 var router = express.Router();
 
 var mysql = require('mysql')
-var connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'catRelTrkr'
-})
+// var connection = mysql.createConnection({//old - from local db setup
+// 	host: 'localhost',
+// 	user: 'root',
+// 	password: '',
+// 	database: 'catRelTrkr'
+// });
 
-connection.connect()
+const connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
+connection.connect();
 
 /* GET db-input page. */
 router.get('/', function (req, res, next) {
@@ -28,13 +29,13 @@ router.post('/formPost', (req, res, next) => { //take POST request data from db-
     let formInput4 = Object.values(postBody)[4].replace("'", "''");
     let formInput5 = Object.values(postBody)[5].replace("'", "''");
     let formInput6 = Object.values(postBody)[6].replace("'", "''");
-    let formInput7 = Object.values(postBody)[7].replace("'", "''");//the .replace() portion enables you to enter single quotes
+    let formInput7 = Object.values(postBody)[7].replace("'", "''"); //the .replace() portion enables you to enter single quotes
     //into input fields & mysql won't reject it. Why you have to replace with "''" instead of "\'" isn't exactly clear
     console.log('formInput7(from dbinput)==>', formInput7);
 
     connection.query("UPDATE catTracker SET vendorName = " + "'" + formInput1 + "', " + "ediName = " + "'" + formInput2 + "', " +
-    "issueDate = " + "'" + formInput3 + "', " + "needNewCat = " + "'" + formInput4 + "', " + "updatedWLatest = " + "'" + formInput5 + "', " +
-    "reporter =" + "'" + formInput6 + "', " + "comments = " + "'" + formInput7 + "'" + " WHERE prim_key = " + formInput0 + ";", 
+        "issueDate = " + "'" + formInput3 + "', " + "needNewCat = " + "'" + formInput4 + "', " + "updatedWLatest = " + "'" + formInput5 + "', " +
+        "reporter =" + "'" + formInput6 + "', " + "comments = " + "'" + formInput7 + "'" + " WHERE prim_key = " + formInput0 + ";",
         function (err, rows, fields) {
             if (err) throw err
 

@@ -3,18 +3,20 @@ var router = express.Router();
 var fs = require('fs');
 
 var mysql = require('mysql')
-var connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: '',
-	database: 'catRelTrkr'
-});
+// var connection = mysql.createConnection({//old - from local db setup
+// 	host: 'localhost',
+// 	user: 'root',
+// 	password: '',
+// 	database: 'catRelTrkr'
+// });
+
+const connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
 connection.connect();
 
 /* GET db-input page. */
 router.get('/', function (req, res, next) {
 	res.render('vw-dbEdit', {
-		title: 'Edit Catalog Tracker Database'
+		title: 'Admin Edit Catalog Tracker Database'
 	});
 });
 
@@ -43,6 +45,7 @@ router.post('/results', (req, res, next) => { //take POST request data from dbEd
 			srcRsObj['Updtd'] = rows[i]['updatedWLatest'];
 			srcRsObj['Rep'] = rows[i]['reporter'];
 			srcRsObj['Cmnts'] = rows[i]['comments'];
+			srcRsObj['Andrea'] = rows[i]['andrea'];
 			//console.log(rows[i]['issueDate'])
 			searchResults.push(srcRsObj);
 			searchResultsForCSV.push(srcRsObj);
@@ -64,6 +67,7 @@ router.post('/results', (req, res, next) => { //take POST request data from dbEd
 	let formInput5 = Object.values(postBody)[5];
 	let formInput6 = Object.values(postBody)[6];
 	let formInput7 = Object.values(postBody)[7];
+	let formInput8 = Object.values(postBody)[8];
 	console.log('formInput0(from dbEdit)==>', formInput0);
 	console.log('formInput1(from dbEdit)==>', formInput1);
 	console.log('formInput2(from dbEdit)==>', formInput2);
@@ -72,9 +76,12 @@ router.post('/results', (req, res, next) => { //take POST request data from dbEd
 	console.log('formInput5(from dbEdit)==>', formInput5);
 	console.log('formInput6(from dbEdit)==>', formInput6);
 	console.log('formInput7(from dbEdit)==>', formInput7);
+	console.log('formInput8(from dbEdit)==>', formInput8);
 
 
-	if (formInput1 == '' && formInput2 == '' && formInput3 == '' && formInput4 == '' && formInput5 == '' && formInput6 == '' && formInput7 == '') { //return all table entries if search string is empty
+	if (formInput1 == '' && formInput2 == '' && formInput3 == '' &&
+		formInput4 == '' && formInput5 == '' && formInput6 == '' &&
+		formInput7 == '' && formInput8 == '') { //return all table entries if search string is empty
 		connection.query("SELECT * FROM catTracker", function (err, rows, fields) {
 			if (err) throw err;
 			showSearchResults(rows);
@@ -85,14 +92,17 @@ router.post('/results', (req, res, next) => { //take POST request data from dbEd
 			});
 		})
 	} else { // if no records found, render vw-noRecords page
-		if (formInput0 !== undefined && formInput1 !== undefined && formInput2 !== undefined && formInput3 !== undefined && formInput4 !== undefined && formInput5 !== undefined && formInput6 !== undefined && formInput7 !== undefined) {
+		if (formInput0 !== undefined && formInput1 !== undefined && formInput2 !== undefined &&
+			formInput3 !== undefined && formInput4 !== undefined && formInput5 !== undefined &&
+			formInput6 !== undefined && formInput7 !== undefined && formInput8 !== undefined) {
 			connection.query("SELECT * FROM catTracker WHERE vendorName LIKE " + "'" + formInput1 + "%" + "'" +
 				" AND ediName LIKE " + "'" + formInput2 + "%" + "'" +
 				" AND issueDate LIKE " + "'" + formInput3 + "%" + "'" +
 				" AND needNewCat LIKE " + "'" + formInput4 + "%" + "'" +
 				" AND updatedWLatest LIKE " + "'" + formInput5 + "%" + "'" +
 				" AND reporter LIKE " + "'" + formInput6 + "%" + "'" +
-				" AND comments LIKE " + "'" + formInput7 + "%" + "'",
+				" AND comments LIKE " + "'" + formInput7 + "%" + "'" +
+				" AND andrea LIKE " + "'" + formInput8 + "%" + "'",
 				function (err, rows, fields) {
 					if (err) throw err;
 					// console.log('rows==>', rows);
@@ -125,7 +135,7 @@ router.post('/saveCSV', (req, res, next) => {
 		Parser
 	} = require('json2csv');
 
-	const fields = ['P_K', 'Vendor', 'EDI', 'IssDt', 'NdNw', 'Updtd', 'Rep', 'Cmnts'];
+	const fields = ['P_K', 'Vendor', 'EDI', 'IssDt', 'NdNw', 'Updtd', 'Rep', 'Cmnts', 'Andrea'];
 	const opts = {
 		fields
 	};
@@ -156,23 +166,23 @@ router.post('/deleteSelection', (req, res, next) => { //take POST request data f
 	const postBody = req.body;
 	console.log('postBody', postBody);
 	let delInput0 = postBody[0];
-	let delInput1 = postBody[1];
-	let delInput2 = postBody[2];
-	let delInput3 = postBody[3];
-	let delInput4 = postBody[4];
-	let delInput5 = postBody[5];
-	let delInput6 = postBody[6];
-	let delInput7 = postBody[7];
+	// let delInput1 = postBody[1];
+	// let delInput2 = postBody[2];
+	// let delInput3 = postBody[3];
+	// let delInput4 = postBody[4];
+	// let delInput5 = postBody[5];
+	// let delInput6 = postBody[6];
+	// let delInput7 = postBody[7];
 	console.log('delInput0(from dbinput)==>', delInput0);
 
 
-	connection.query("DELETE FROM catTracker WHERE prim_key = " + delInput0 + ";", 
-	    function (err, rows, fields) {
-	        if (err) throw err
+	connection.query("DELETE FROM catTracker WHERE prim_key = " + delInput0 + ";",
+		function (err, rows, fields) {
+			if (err) throw err
 
-	        console.log('rows==>', rows);
-	        console.log('fields==>', fields);
-	    });
+			console.log('rows==>', rows);
+			console.log('fields==>', fields);
+		});
 });
 
 module.exports = router;

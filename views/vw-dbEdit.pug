@@ -34,6 +34,9 @@ html
 						td
 							label.input-label-1(for='cmnt') Comments
 							input#cmnt.input-unit-1(type='text', placeholder='enter data', name='cmntPost', value='')
+						td
+							label.input-label-1(for='andr') Comments
+							input#andr.input-unit-1(type='text', placeholder='enter data', name='andrPost', value='')
 			
 			button#searchDB(type='submit', form='dbEdit', style="display: block; float: left") Search DB
 			br
@@ -57,6 +60,7 @@ html
 						th(onclick="sortTable(5)") Updated w/ Latest?
 						th(onclick="sortTable(6)") Reporter
 						th(onclick="sortTable(7)") Comments
+						th(onclick="sortTable(8)") Andrea
 
 				
 
@@ -72,6 +76,7 @@ html
 									td= elmnt.Updtd
 									td= elmnt.Rep
 									td= elmnt.Cmnts
+									td= elmnt.Andrea
 
 
 		//- script(src='/javascripts/dbEdit.js')
