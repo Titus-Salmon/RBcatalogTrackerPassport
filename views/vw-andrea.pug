@@ -40,16 +40,16 @@ html
 			
 			button#searchDB(type='submit', form='andrea', style="display: block; float: left") Search DB
 			br
-			br
-			button#saveCSV(type="submit" form="saveCSVPost") Save Results as CSV
-			form#saveCSVPost(action='/dbEdit/saveCSV' method='POST' accept-charset='UTF-8')
-				label.input-label-1(for='csv') filename:
-					input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
+			//- br
+			//- button#saveCSV(type="submit" form="saveCSVPost") Save Results as CSV
+			//- form#saveCSVPost(action='/dbEdit/saveCSV' method='POST' accept-charset='UTF-8')
+			//- 	label.input-label-1(for='csv') filename:
+			//- 		input#csv.input-unit-1(type='text', placeholder='enter filename here', name='csvPost', value='')
 		
 		div.rslt-tbl-1
 			table#resTbl
 				button#editDB(style="display: inline-block") Edit Selection
-				button#deleteSelection(style="display: inline-block") Delete Selection
+				//- button#deleteSelection(style="display: inline-block") Delete Selection
 				thead
 					tr
 						th(onclick="sortTable(0)") Primary Key
