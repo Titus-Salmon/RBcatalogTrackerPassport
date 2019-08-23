@@ -32,7 +32,7 @@ router.post('/formPost', (req, res, next) => { //take POST request data from db-
     //into input fields & mysql won't reject it. Why you have to replace with "''" instead of "\'" isn't exactly clear
     console.log('formInput6(from dbinput)==>', formInput6);
 
-    connection.query("INSERT INTO catTracker (vendorName, ediName, IssueDate, needNewCat, updatedWLatest, reporter, comments) VALUES (" +
+    connection.query("INSERT INTO cattracker (vendorName, ediName, IssueDate, needNewCat, updatedWLatest, reporter, comments) VALUES (" +
         "'" + formInput0 + "', " + "'" + formInput1 + "', " + "'" + formInput2 + "', " + "'" + formInput3 + "', " + "'" + formInput4 +
         "', " + "'" + formInput5 + "', " + "'" + formInput6 + "'" + ")",
         function (err, rows, fields) {

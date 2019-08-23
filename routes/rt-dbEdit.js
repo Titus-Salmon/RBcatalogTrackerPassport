@@ -82,7 +82,7 @@ router.post('/results', (req, res, next) => { //take POST request data from dbEd
 	if (formInput1 == '' && formInput2 == '' && formInput3 == '' &&
 		formInput4 == '' && formInput5 == '' && formInput6 == '' &&
 		formInput7 == '' && formInput8 == '') { //return all table entries if search string is empty
-		connection.query("SELECT * FROM catTracker", function (err, rows, fields) {
+		connection.query("SELECT * FROM cattracker", function (err, rows, fields) {
 			if (err) throw err;
 			showSearchResults(rows);
 
@@ -95,7 +95,7 @@ router.post('/results', (req, res, next) => { //take POST request data from dbEd
 		if (formInput0 !== undefined && formInput1 !== undefined && formInput2 !== undefined &&
 			formInput3 !== undefined && formInput4 !== undefined && formInput5 !== undefined &&
 			formInput6 !== undefined && formInput7 !== undefined && formInput8 !== undefined) {
-			connection.query("SELECT * FROM catTracker WHERE vendorName LIKE " + "'" + formInput1 + "%" + "'" +
+			connection.query("SELECT * FROM cattracker WHERE vendorName LIKE " + "'" + formInput1 + "%" + "'" +
 				" AND ediName LIKE " + "'" + formInput2 + "%" + "'" +
 				" AND issueDate LIKE " + "'" + formInput3 + "%" + "'" +
 				" AND needNewCat LIKE " + "'" + formInput4 + "%" + "'" +
@@ -176,7 +176,7 @@ router.post('/deleteSelection', (req, res, next) => { //take POST request data f
 	console.log('delInput0(from dbinput)==>', delInput0);
 
 
-	connection.query("DELETE FROM catTracker WHERE prim_key = " + delInput0 + ";",
+	connection.query("DELETE FROM cattracker WHERE prim_key = " + delInput0 + ";",
 		function (err, rows, fields) {
 			if (err) throw err
 
