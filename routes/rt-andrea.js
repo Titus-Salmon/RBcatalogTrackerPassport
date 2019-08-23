@@ -16,7 +16,7 @@ connection.connect();
 /* GET db-input page. */
 router.get('/', function (req, res, next) {
   res.render('vw-andrea', {
-    title: 'Admin Edit Catalog Tracker Database'
+    title: 'Andrea\'s notes - Catalog Tracker Database'
   });
 });
 

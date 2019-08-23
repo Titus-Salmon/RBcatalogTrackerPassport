@@ -12,7 +12,7 @@ EditDBbtn.addEventListener('click', function () {
     let retrievedCellData = JSON.parse(localStorage.getItem("clickedRowData"));
 
     console.log('retrievedCellData~~~>', retrievedCellData)
-    window.location = 'https://rbcat.herokuapp.com/editEntry_andrea'
+    window.location = 'https://rbcat.herokuapp.com/editEntryAndrea'
   }
 })
 //end edit DB////////////////////////////////////////////////////////////////////
