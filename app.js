@@ -74,13 +74,13 @@ passport.deserializeUser((user, cb) => {
 //^//==>Passport config //t0d
 
 
-app.use('/', homeRouter); //t0d
+app.use('/home', homeRouter); //t0d
 app.use('/dbInput', dbInputRouter); //t0d
 app.use('/dbSearch', dbSearchRouter); //t0d
 app.use('/dbEdit', dbEditRouter); //t0d
 app.use('/editEntry', editEntryRouter); //t0d
 app.use('/noRecords', noRecordsRouter); //t0d
-app.use('/login', loginRouter); //t0d
+app.use('/', loginRouter); //t0d
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
