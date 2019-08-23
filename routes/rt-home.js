@@ -11,7 +11,7 @@ const passport = require('passport');
 router.get('/', passport.authenticate('github'));
 
 router.get('/auth_t0d', passport.authenticate('github', {
-  successRedirect: '/home',
+  // successRedirect: '/home',
   failureRedirect: '/loginFailed'
 }));
 
