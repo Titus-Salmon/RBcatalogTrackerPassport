@@ -8,6 +8,7 @@ const logger = require('morgan');
 const helmet = require('helmet'); //t0d
 
 //v//==>Needed for Passport
+const session = require('express-session');
 const passport = require('passport'); //t0d
 const GitHubStrategy = require('passport-github').Strategy; //t0d
 //^//==>Needed for Passport
@@ -41,6 +42,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(helmet()); //t0d
 
 //v//==>Passport config //t0d
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: {
+    secure: true
+  }
+}))
+app.use(passport.initialize());
+app.use(passport.session());
 const passportConfig = require('./passport-config_t0d');
 passport.use(new GitHubStrategy(
   passportConfig,
@@ -54,6 +65,12 @@ passport.use(new GitHubStrategy(
     return cb(null, profile);
   }
 ));
+passport.serializeUser((user, cb) => {
+  cb(null, user);
+})
+passport.deserializeUser((user, cb) => {
+  cb(null, user);
+})
 //^//==>Passport config //t0d
 
 
