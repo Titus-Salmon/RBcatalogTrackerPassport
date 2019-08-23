@@ -21,6 +21,7 @@ const dbEditRouter = require('./routes/rt-dbEdit'); //t0d
 const editEntryRouter = require('./routes/rt-editEntry'); //t0d
 const noRecordsRouter = require('./routes/rt-noRecords'); //t0d
 const loginRouter = require('./routes/rt-login'); //t0d
+const andreaRouter = require('./routes/rt-andrea'); //t0d
 
 const app = express();
 
@@ -81,6 +82,7 @@ app.use('/dbEdit', dbEditRouter); //t0d
 app.use('/editEntry', editEntryRouter); //t0d
 app.use('/noRecords', noRecordsRouter); //t0d
 app.use('/', loginRouter); //t0d
+app.use('/Andrea', andreaRouter); //t0d
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
