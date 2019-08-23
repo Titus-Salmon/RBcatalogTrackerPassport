@@ -14,7 +14,7 @@ connection.connect();
 
 /* GET db-input page. */
 router.get('/', function (req, res, next) {
-  res.render('vw-editEntry', {
+  res.render('vw-editEntryAndrea', {
     title: 'Edit Entry'
   });
 });
