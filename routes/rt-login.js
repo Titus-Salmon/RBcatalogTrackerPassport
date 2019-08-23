@@ -13,10 +13,10 @@ const passport = require('passport');
 
 router.get('/', passport.authenticate('github'));
 
-router.get('/auth', passport.authenticate('github', {
-  successRedirect: '/home',
-  failureRedirect: 'loginFailed'
-}));
+// router.get('/auth', passport.authenticate('github', {
+//   successRedirect: '/home',
+//   failureRedirect: '/loginFailed'
+// }));
 
 router.post('/loginPost', (req, res, next) => { //take POST request data from login page & do Passport stuff
   const postBody = req.body;
