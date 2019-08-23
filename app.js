@@ -9,7 +9,7 @@ const helmet = require('helmet'); //t0d
 
 //v//==>Needed for Passport
 const passport = require('passport'); //t0d
-const GithubStrategy = require('passport-github').Strategy; //t0d
+const GitHubStrategy = require('passport-github').Strategy; //t0d
 //^//==>Needed for Passport
 
 
