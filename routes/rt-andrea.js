@@ -86,7 +86,7 @@ router.post('/results', (req, res, next) => { //take POST request data from dbEd
       if (err) throw err;
       showSearchResults(rows);
 
-      res.render('vw-dbEdit', { //render searchResults to vw-dbEdit page
+      res.render('vw-andrea', { //render searchResults to vw-dbEdit page
         title: 'Edit Catalog Tracker Database',
         searchResRows: searchResults,
       });
@@ -115,7 +115,7 @@ router.post('/results', (req, res, next) => { //take POST request data from dbEd
           } else { //if records found for search string entered, add them to searchResults
             showSearchResults(rows);
 
-            res.render('vw-dbEdit', { //render searchResults to vw-dbEdit page
+            res.render('vw-andrea', { //render searchResults to vw-dbEdit page
               title: 'Edit Catalog Tracker Database',
               searchResRows: searchResults,
             });
