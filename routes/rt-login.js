@@ -5,11 +5,13 @@ const passport = require('passport');
 
 
 /* GET login page. */
-router.get('/', function (req, res, next) {
-  res.render('vw-login', {
-    title: 'Login'
-  });
-});
+// router.get('/', function (req, res, next) {
+//   res.render('vw-login', {
+//     title: 'Login'
+//   });
+// });
+
+router.get('/', passport.authenticate('github'));
 
 router.post('/loginPost', (req, res, next) => { //take POST request data from login page & do Passport stuff
   const postBody = req.body;
