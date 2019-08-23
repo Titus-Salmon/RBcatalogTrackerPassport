@@ -50,7 +50,8 @@ passport.use(new GitHubStrategy(
     // }, function (err, user) {
     //   return cb(err, user);
     // });
-    console.log('profile===>>', profile);
+    // console.log('profile===>>', profile);
+    return cb(null, profile);
   }
 ));
 //^//==>Passport config //t0d
