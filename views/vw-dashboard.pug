@@ -1,0 +1,15 @@
+doctype html
+html
+	head
+		link(rel='stylesheet', href='../stylesheets/style.css')
+		title= title
+
+	body
+		include partials/header.pug
+		div.input-field-1
+			h3(style="margin-top: 0")= title
+
+			p Welcome #{username}
+			//- p Welcome user
+
+			a(href="/users/logout") Logout

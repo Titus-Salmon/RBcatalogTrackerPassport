@@ -2,23 +2,33 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 
+const passport = require('passport');
+
 var mysql = require('mysql')
-// var connection = mysql.createConnection({//old - from local db setup
-// 	host: 'localhost',
-// 	user: 'root',
-// 	password: '',
-// 	database: 'catRelTrkr'
-// });
+var connection = mysql.createConnection({ //old - from local db setup
+  host: 'localhost',
+  user: 'root',
+  password: '',
+  database: 'catRelTrkr'
+});
 
-const connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
-connection.connect();
+// const connection = mysql.createConnection(process.env.JAWSDB_MARIA_URL);
+// connection.connect();
 
-/* GET db-input page. */
+/* GET home page. */
 router.get('/', function (req, res, next) {
   res.render('vw-andrea', {
-    title: 'Andrea\'s notes - Catalog Tracker Database'
+    title: 'Andrea\'s Notes'
   });
 });
+
+// router.get('/',
+//   require('connect-ensure-login').ensureLoggedIn(),
+//   function (req, res) {
+//     res.render('vw-andrea', {
+//       user: req.user
+//     });
+//   });
 
 let searchResultsForCSV = [];
 console.log('searchResultsForCSV from top level', searchResultsForCSV)
